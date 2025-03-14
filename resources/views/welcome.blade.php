@@ -273,5 +273,24 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <script>
+            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            window.OneSignalDeferred.push(async function(OneSignal) {
+                await OneSignal.init({
+                    appId: "525bf785-356c-4137-a437-1cbfe2602545",
+                    notifyButton: {
+                        enable: true
+                    },
+                    serviceWorkerParam: { scope: "/" },
+                    serviceWorkerPath: "/OneSignalSDKWorker.js",
+                });
+                console.log(OneSignal);
+            });
+        </script>
+
+
     </body>
 </html>

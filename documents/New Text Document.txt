@@ -1,0 +1,3 @@
+https://www.youtube.com/watch?v=f1qTCndR9e0&t=912s
+https://dashboard.onesignal.com/apps/525bf785-356c-4137-a437-1cbfe2602545/settings/webpush/install
+https://documentation.onesignal.com/docs/onesignal-service-worker-faq
