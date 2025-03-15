@@ -287,7 +287,7 @@
                     serviceWorkerParam: { scope: "/" },
                     serviceWorkerPath: "/OneSignalSDKWorker.js",
                 });
-                console.log(OneSignal);
+                console.log(OneSignal.User.PushSubscription.id);
             });
         </script>
 
