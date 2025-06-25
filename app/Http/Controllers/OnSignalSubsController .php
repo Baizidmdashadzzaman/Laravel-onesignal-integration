@@ -12,6 +12,28 @@ class OnSignalSubsController extends Controller
      * Display a listing of the resource.
      */
     public function send_notification(Request $request)
+    {
+        try {
+            $contents = $request->message;
+            $subcriptionIds = OnsignalSub::pluck('subscription_id')->toArray();
+            $url = $request->url;
+            $response = Http::withHeaders([
+                'Authorization' => 'Basic ' . env('ONESIGNAL_API_KEY'),
+                'Content-Type' => 'application/json',
+            ])->post('https://onesignal.com/api/v1/notifications', [
+                'app_id' => env('ONESIGNAL_APP_ID'),
+                'included_segments' => ['All'],
+                'included_player_ids' => $subcriptionIds,
+                'contents' => ['en' => $contents],
+                'url' => $url,
+            ]);
+
+            //return response()->json($response->json());
+            return redirect()->back()->with('success_message', 'Notification send successfully.');
+        } catch (\Exception $e) {
+            //return response()->json(['error' => $e->getMessage()], 500);
+            return redirect()->back()->with('error_message', 'Unable to send notification , please try again.');
+        }
     }
 
     public function onsignalsub_subscriber_store(Request $request)
